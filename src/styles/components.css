@@ -1,0 +1,53 @@
+@utility btn-base {
+  @apply centered transition-custom h-12 w-full caption rounded-[50px] bg-accent-light border border-accent-lines shrink-0;
+  &:hover {
+    @apply text-text-primary border-2;
+  }
+}
+
+@utility btn-accent {
+  @apply btn-base h-10 bg-accent-dark text-text-on-accent border-0;
+  &:hover {
+    @apply text-text-on-accent border-0 brightness-110;
+  }
+}
+
+@utility btn-danger {
+  @apply btn-base h-12 note hover:brightness-110 bg-danger-light text-text-on-accent border-0;
+  &:hover {
+    @apply bg-danger-dark text-text-on-accent border-0;
+  }
+}
+
+@utility formField {
+  @apply transition-custom box-border txt-md h-10 w-full bg-transparent border-2 border-lines rounded-lg text-text-primary outline-none;
+  &:hover {
+    @apply border-accent-light;
+  }
+  &:focus {
+    @apply border-accent;
+  }
+  &::placeholder {
+    @apply opacity-50 note;
+  }
+}
+
+@utility icon {
+  @apply w-6 h-6 shrink-0 block fill-current;
+}
+
+@utility title {
+  @apply txt-xl text-text-primary;
+}
+
+@utility subtitle {
+  @apply txt-lg text-text-secondary;
+}
+
+@utility caption {
+  @apply txt-md text-text-secondary;
+}
+
+@utility note {
+  @apply txt-xs text-text-secondary;
+}

@@ -1,0 +1,50 @@
+:root {
+  /* --- Colors (Originals preserved) --- */
+  --accent-dark: 99, 95, 199;
+  --accent-light: rgba(99, 95, 199, 0.05);
+  --accent: 216, 214, 241;
+  --danger-light: 234, 85, 85;
+  --danger-dark: 199, 72, 72;
+
+  /* --- Light Mode UI --- */
+  --bg-page: 244, 247, 253;
+  --accent-lines: rgba(99, 95, 199, 0.06);
+  --lines: 226, 232, 240;
+  --text-primary: 71, 85, 105;
+  --text-secondary: 130, 143, 163;
+  --text-on-accent: 255, 255, 255;
+}
+
+.dark {
+  /* --- Dark Mode UI (Professional Deep Slate) --- */
+  --bg-page: 32, 33, 44;
+  --lines: 62, 63, 78;
+  --text-primary: 255, 255, 255;
+  --text-secondary: 148, 163, 184;
+}
+
+@theme {
+  /* Color Mapping */
+  --color-accent-dark: rgb(var(--accent-dark));
+  --color-accent-light: var(--accent-light);
+  --color-accent: rgb(var(--accent));
+
+  --color-danger-light: rgb(var(--danger-light));
+  --color-danger-dark: rgb(var(--danger-dark));
+
+  --color-bg-page: rgb(var(--bg-page));
+  --color-accent-lines: var(--accent-lines);
+  --color-lines: rgb(var(--lines));
+
+  --color-text-primary: rgb(var(--text-primary));
+  --color-text-secondary: rgb(var(--text-secondary));
+  --color-text-on-accent: rgb(var(--text-on-accent));
+
+  /* Spacing/ */
+  --spacing-xs: 2px;
+  --spacing-sm: 6px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+}

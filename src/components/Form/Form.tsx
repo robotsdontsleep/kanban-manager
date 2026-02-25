@@ -1,11 +1,11 @@
-import { type ReactNode } from "react";
+import { type ReactNode } from 'react';
 import {
   FormProvider,
   useForm,
   type DefaultValues,
   type FieldValues,
   type SubmitHandler,
-} from "react-hook-form";
+} from 'react-hook-form';
 
 interface FormProps<T extends FieldValues> {
   defaultValues: DefaultValues<T>;
@@ -24,14 +24,14 @@ export const Form = <T extends FieldValues>({
 }: FormProps<T>) => {
   const methods = useForm<T>({
     defaultValues,
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   return (
     <FormProvider {...methods}>
       <form
         autoComplete="off"
-        onSubmit={methods.handleSubmit(onSubmit)}
+        onSubmit={void methods.handleSubmit(onSubmit)}
         className="flex flex-col gap-4"
       >
         <h2 className="title">{title}</h2>

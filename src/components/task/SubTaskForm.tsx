@@ -1,12 +1,12 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import { useBoardStore } from "@/store/board/store";
-import { selectBoard } from "@/store/board/selectors";
-import { Form } from "../Form/Form";
-import { updateTask } from "@/store/task/selectors";
-import type { Task } from "@/store/task/types";
-import { SelectField } from "../Form/SelectField";
+import { useBoardStore } from '@/store/board/store';
+import { selectBoard } from '@/store/board/selectors';
+import { Form } from '../Form/Form';
+import { updateTask } from '@/store/task/selectors';
+import type { Task } from '@/store/task/types';
+import { SelectField } from '../Form/SelectField';
 
 interface Subtask {
   id: string;
@@ -20,44 +20,43 @@ interface SubTasksForm {
 
 export const SubTaskForm = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const location = useLocation();
+  const state = location.state as Task | null;
+
   const { boardId } = useParams();
-  const activeBoard = useBoardStore(selectBoard(boardId!));
+  const activeBoard = useBoardStore(selectBoard(boardId ?? ''));
 
   const submit = (taskData: Task) => {
-    updateTask(taskData);
-    navigate(`/${boardId}`);
+    try {
+      updateTask(taskData);
+      void navigate(`/${boardId}`);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Critical error:', error);
+    }
   };
 
   return (
     <div className="flex w-full flex-col gap-6">
       <Form
-        defaultValues={state || {}}
+        defaultValues={state ?? {}}
         onSubmit={submit}
-        title={state?.taskName || "Task Details"}
+        title={state?.taskName ?? 'Task Details'}
         submitButtonText="Save Changes"
       >
         <div className="flex flex-col gap-2">
           <h3 className="note font-bold">Description</h3>
           <p className="note max-h-40 overflow-y-auto wrap-break-word leading-relaxed">
-            {state?.taskDescription || "No description provided for this task."}
+            {state?.taskDescription ?? 'No description provided for this task.'}
           </p>
         </div>
 
         <SubtasksList />
 
-        <SelectField
-          label="Current Status"
-          name="column"
-          options={activeBoard?.columns || []}
-        />
+        <SelectField label="Current Status" name="column" options={activeBoard?.columns ?? []} />
       </Form>
 
-      <Link
-        to="?modal=delete-task"
-        state={state}
-        className="btn-danger h-10 font-bold"
-      >
+      <Link to="?modal=delete-task" state={state} className="btn-danger h-10 font-bold">
         Delete Task
       </Link>
     </div>
@@ -68,12 +67,12 @@ const SubtasksList = () => {
   const { register, control, watch } = useFormContext<SubTasksForm>();
   const { fields } = useFieldArray({
     control,
-    name: "subtasks",
+    name: 'subtasks',
   });
 
-  const watchedSubtasks = watch("subtasks");
-  const completedCount =
-    watchedSubtasks?.filter((s) => s.isCompleted).length || 0;
+  const watchedSubtasks = watch('subtasks');
+
+  const completedCount = watchedSubtasks?.filter((s) => s?.isCompleted).length ?? 0;
 
   return (
     <div className="flex flex-col gap-3">
@@ -96,11 +95,11 @@ const SubtasksList = () => {
               <span
                 className={`note font-bold transition-all ${
                   watchedSubtasks?.[index]?.isCompleted
-                    ? "text-text-secondary line-through opacity-50"
-                    : "text-text-primary"
+                    ? 'text-text-secondary line-through opacity-50'
+                    : 'text-text-primary'
                 }`}
               >
-                {field.name}
+                {(field as unknown as Subtask).name}
               </span>
             </label>
           ))}

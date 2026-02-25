@@ -4,11 +4,11 @@ import {
   useFormContext,
   type FieldError,
   type UseFormRegisterReturn,
-} from "react-hook-form";
+} from 'react-hook-form';
 
-import { RxCross2 } from "react-icons/rx";
+import { RxCross2 } from 'react-icons/rx';
 
-import { FieldErrorComponent } from "./FieldError";
+import { FieldErrorComponent } from './FieldError';
 
 interface MultiTextFieldProps {
   id: string;
@@ -24,7 +24,7 @@ export const MultiTextField = ({
   label,
   name,
   buttonText,
-  placeholder = "",
+  placeholder = '',
   isRequired = false,
 }: MultiTextFieldProps) => {
   const {
@@ -43,7 +43,7 @@ export const MultiTextField = ({
       <h3 className="note font-bold">{label}</h3>
       <ul className="custom-scrollbar flex max-h-40 flex-col gap-3 overflow-y-auto pr-2">
         {fields.map((field, index) => {
-          const fieldError = get(errors, `${name}.${index}.name`);
+          const fieldError = get(errors, `${name}.${index}.name`) as FieldError;
 
           return (
             <li key={field.id}>
@@ -55,7 +55,7 @@ export const MultiTextField = ({
                   setValueAs: (value: string) => value.trim(),
                   pattern: {
                     value: /^(?=.*[a-zA-Z0-9])[a-zA-Z0-9\s_.\-/]+$/,
-                    message: "Invalid format",
+                    message: 'Invalid format',
                   },
                 })}
                 onRemove={fields.length > 1 ? () => remove(index) : undefined}
@@ -67,7 +67,7 @@ export const MultiTextField = ({
       <button
         type="button"
         className="btn-base note h-10 bg-accent-light font-bold text-accent-dark hover:brightness-105 mt-4"
-        onClick={() => append({ name: "", id: `${id}-${Date.now()}` })}
+        onClick={() => append({ name: '', id: `${id}-${Date.now()}` })}
       >
         {buttonText}
       </button>
@@ -89,9 +89,9 @@ const Field = ({ error, register, onRemove, placeholder }: FieldProps) => {
         <input
           type="text"
           placeholder={placeholder}
-          aria-invalid={error ? "true" : "false"}
+          aria-invalid={error ? 'true' : 'false'}
           className={`formField pr-10 ${
-            error ? "border-danger-light focus:border-danger-light" : ""
+            error ? 'border-danger-light focus:border-danger-light' : ''
           }`}
           {...register}
         />

@@ -1,19 +1,19 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import { useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import type { Task } from "@/store/task/types";
-import { addTask } from "@/store/task/selectors";
+import type { Task } from '@/store/task/types';
+import { addTask } from '@/store/task/selectors';
 
-import { useBoardStore } from "@/store/board/store";
-import { selectBoard } from "@/store/board/selectors";
+import { useBoardStore } from '@/store/board/store';
+import { selectBoard } from '@/store/board/selectors';
 
-import { Form } from "../Form/Form";
-import { MultiTextField } from "@/components/Form/MultiTextField";
-import { TextField } from "@/components/Form/TextField";
-import { TextAreaField } from "../Form/TextAreaField";
-import { SelectField } from "../Form/SelectField";
+import { Form } from '../Form/Form';
+import { MultiTextField } from '@/components/Form/MultiTextField';
+import { TextField } from '@/components/Form/TextField';
+import { TextAreaField } from '../Form/TextAreaField';
+import { SelectField } from '../Form/SelectField';
 
 interface TaskFormProps {
   title: string;
@@ -30,9 +30,9 @@ export const TaskForm = ({ title, submitButtonText }: TaskFormProps) => {
   const defaultValues: Task = useMemo(() => {
     return {
       taskId: null,
-      taskName: "",
-      taskDescription: "",
-      subtasks: [{ name: "", isCompleted: false }],
+      taskName: '',
+      taskDescription: '',
+      subtasks: [{ name: '', isCompleted: false }],
       column: null,
     };
   }, []);
@@ -41,7 +41,7 @@ export const TaskForm = ({ title, submitButtonText }: TaskFormProps) => {
     const taskId = `task-${Date.now()}`;
 
     const subtasks = taskData.subtasks
-      .filter((sub) => sub.name !== "")
+      .filter((sub) => sub.name !== '')
       .map((sub) => ({
         ...sub,
         isCompleted: false,
@@ -49,7 +49,7 @@ export const TaskForm = ({ title, submitButtonText }: TaskFormProps) => {
 
     const task = { ...taskData, subtasks, taskId };
     addTask(task);
-    navigate(`/`);
+    void navigate(`/`);
   };
 
   return (
@@ -62,27 +62,27 @@ export const TaskForm = ({ title, submitButtonText }: TaskFormProps) => {
       >
         <div className="flex flex-col gap-6">
           <TextField
-            label={t("tasks.task_name")}
+            label={t('tasks.task_name')}
             name="taskName"
-            placeholder={t("tasks.placeholder_task")}
+            placeholder={t('tasks.placeholder_task')}
           />
           <TextAreaField
-            label={t("tasks.description")}
+            label={t('tasks.description')}
             name="taskDescription"
-            placeholder={t("tasks.placeholder_desc")}
+            placeholder={t('tasks.placeholder_desc')}
           />
           <MultiTextField
             id="subtask"
-            label={t("tasks.subtasks")}
+            label={t('tasks.subtasks')}
             name="subtasks"
-            placeholder={t("tasks.placeholder_subtask")}
-            buttonText={t("ui.buttons.save_changes")}
+            placeholder={t('tasks.placeholder_subtask')}
+            buttonText={t('ui.buttons.save_changes')}
           />
           <SelectField
-            label={t("tasks.column")}
+            label={t('tasks.column')}
             name="column"
-            placeholder={t("tasks.select_column")}
-            options={activeBoard?.columns || []}
+            placeholder={t('tasks.select_column')}
+            options={activeBoard?.columns ?? []}
           />
         </div>
       </Form>

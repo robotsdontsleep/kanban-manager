@@ -1,15 +1,15 @@
-import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { useModalParams } from "@/hooks/useModalParams";
-import { addBoard, selectBoard, updateBoard } from "@/store/board/selectors";
-import { useBoardStore } from "@/store/board/store";
-import type { Board } from "@/store/board/types";
+import { useModalParams } from '@/hooks/useModalParams';
+import { addBoard, selectBoard, updateBoard } from '@/store/board/selectors';
+import { useBoardStore } from '@/store/board/store';
+import type { Board } from '@/store/board/types';
 
-import { Form } from "../Form/Form";
-import { TextField } from "../Form/TextField";
-import { MultiTextField } from "../Form/MultiTextField";
+import { Form } from '../Form/Form';
+import { TextField } from '../Form/TextField';
+import { MultiTextField } from '../Form/MultiTextField';
 
 interface BordFormProps {
   title: string;
@@ -27,8 +27,8 @@ export interface FormState {
 
 const initialBoardState = {
   boardId: null,
-  boardName: "",
-  columns: [{ name: "", id: `column-${Date.now()}` }],
+  boardName: '',
+  columns: [{ name: '', id: `column-${Date.now()}` }],
 };
 
 export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
@@ -41,7 +41,7 @@ export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
   const activeBoard = useBoardStore(selectBoard(boardId!));
 
   const defaultValues: FormState = useMemo(() => {
-    if (modalType === "edit-board" && activeBoard) {
+    if (modalType === 'edit-board' && activeBoard) {
       return activeBoard;
     }
 
@@ -50,14 +50,14 @@ export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
 
   const submit = (boardData: FormState | Board) => {
     const board =
-      modalType === "add-board"
+      modalType === 'add-board'
         ? { ...boardData, boardId: `board-${Date.now()}` }
         : (boardData as Board);
 
-    if (modalType === "add-board") addBoard(board as Board);
-    if (modalType === "edit-board") updateBoard(board as Board);
+    if (modalType === 'add-board') addBoard(board as Board);
+    if (modalType === 'edit-board') updateBoard(board as Board);
 
-    navigate(`/${board.boardId}`);
+    void navigate(`/${board.boardId}`);
   };
 
   return (
@@ -69,16 +69,16 @@ export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
     >
       <div className="flex flex-col gap-6">
         <TextField
-          label={t("boards.board_name")}
+          label={t('boards.board_name')}
           name="boardName"
-          placeholder={t("boards.placeholder_name")}
+          placeholder={t('boards.placeholder_name')}
         />
         <MultiTextField
           id="column"
-          label={t("boards.board_columns")}
+          label={t('boards.board_columns')}
           name="columns"
-          placeholder={t("boards.placeholder_column")}
-          buttonText={t("boards.new_column")}
+          placeholder={t('boards.placeholder_column')}
+          buttonText={t('boards.new_column')}
           isRequired={true}
         />
       </div>

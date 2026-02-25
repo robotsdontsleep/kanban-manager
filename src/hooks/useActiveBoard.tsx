@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useRef } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { selectBoards } from "@/store/board/selectors";
-import { useBoardStore } from "@/store/board/store";
+import { selectBoards } from '@/store/board/selectors';
+import { useBoardStore } from '@/store/board/store';
 
 export const useActiveBoard = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const useActiveBoard = () => {
 
   useEffect(() => {
     if (activeBoard) {
-      localStorage.setItem("activeBoard", activeBoard.boardId);
+      localStorage.setItem('activeBoard', activeBoard.boardId);
       boardExisted.current = true;
       return;
     }
@@ -23,19 +23,19 @@ export const useActiveBoard = () => {
       const fallbackBoard = boards.find((b) => b.boardId !== boardId);
 
       if (fallbackBoard) {
-        localStorage.setItem("activeBoard", fallbackBoard.boardId);
-        navigate(`/${fallbackBoard.boardId}`, { replace: true });
+        localStorage.setItem('activeBoard', fallbackBoard.boardId);
+        void navigate(`/${fallbackBoard.boardId}`, { replace: true });
         return;
       } else {
-        localStorage.removeItem("activeBoard");
-        navigate("/", { replace: true });
+        localStorage.removeItem('activeBoard');
+        void navigate('/', { replace: true });
         boardExisted.current = false;
         return;
       }
     }
 
     if (!boardExisted.current) {
-      localStorage.removeItem("activeBoard");
+      localStorage.removeItem('activeBoard');
       return;
     }
   }, [boardId, boards, activeBoard, navigate]);

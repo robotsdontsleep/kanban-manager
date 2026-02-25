@@ -32,11 +32,13 @@ export const Form = <T extends FieldValues>({
       <form
         autoComplete="off"
         onSubmit={methods.handleSubmit(onSubmit)}
-        className="flex-column max-h-[80vh] gap-md"
+        className="flex flex-col gap-4"
       >
-        <h2 className="flex flex-none mb-xl">{title}</h2>
-        {children}
-        <button type="submit" className="btn-accent w-full">
+        <h2 className="title">{title}</h2>
+
+        <div className="flex flex-col gap-6">{children}</div>
+
+        <button type="submit" className="btn-accent">
           {submitButtonText}
         </button>
       </form>

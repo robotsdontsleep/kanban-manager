@@ -1,23 +1,32 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export const BoardMenu = ({ onClose }: { onClose: () => void }) => {
+  const { t } = useTranslation();
+
   return (
-    <div className="absolute top-22 right-7 z-50 w-48 rounded-lg bg-bg-page border border-lines shadow-md animate-dropdown-in">
-      <ul className="flex-column p-md gap-sm" onClick={onClose}>
-        <li>
+    <div
+      className="absolute top-14 right-0 z-50 w-48 rounded-lg border border-lines bg-bg-page shadow-xl md:top-20"
+      role="menu"
+      aria-label="Board options"
+    >
+      <ul className="flex flex-col p-2" onClick={onClose}>
+        <li role="none">
           <Link
             to="?modal=edit-board"
-            className="block w-full no-underline caption p-sm rounded-md transition-custom border-2 border-transparent hover:bg-accent hover:text-accent-dark hover:border-accent-lines active:scale-98"
+            role="menuitem"
+            className="caption block w-full rounded-md px-4 py-2 transition-colors hover:bg-accent-light hover:text-accent-dark active:scale-95"
           >
-            Edit Board
+            {t("boards.edit_board")}
           </Link>
         </li>
-        <li>
+        <li role="none">
           <Link
             to="?modal=delete-board"
-            className="block w-full no-underline caption p-sm rounded-md transition-custom border-2 border-transparent active:scale-98 hover:bg-danger-light/10 hover:text-danger-dark"
+            role="menuitem"
+            className="caption block w-full rounded-md px-4 py-2 text-danger-light transition-colors hover:bg-danger-light/10 hover:text-danger-dark active:scale-95"
           >
-            Delete Board
+            {t("boards.delete_board")}
           </Link>
         </li>
       </ul>

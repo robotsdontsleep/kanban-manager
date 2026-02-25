@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { useModalParams } from "../../hooks/useModalParams";
 
 import { Modal } from "./Modal";
@@ -7,32 +9,34 @@ import { TaskForm } from "../task/TaskForm";
 import { SubTaskForm } from "../task/SubTaskForm";
 
 export const ModalManager = () => {
+  const { t } = useTranslation();
+
   const { modalType, closeModal } = useModalParams();
 
-  if (!modalType) return;
+  if (!modalType) return null;
 
   return (
     <Modal>
       {modalType === "add-board" && (
         <BoardForm
           key="add"
-          title="Add New Board"
-          submitButtonText="Create New Board"
+          title={t("boards.add_new")}
+          submitButtonText={t("boards.create_new")}
         />
       )}
       {modalType === "edit-board" && (
         <BoardForm
           key="edit"
-          title="Edit Board"
-          submitButtonText="Save Changes"
+          title={t("boards.edit_board")}
+          submitButtonText={t("ui.buttons.save_changes")}
         />
       )}
       {modalType === "delete-board" && <ConfirmDelete onClose={closeModal} />}
       {modalType === "add-task" && (
         <TaskForm
           key="add"
-          title="Add New Task"
-          submitButtonText="Create Task"
+          title={t("tasks.add_new")}
+          submitButtonText={t("tasks.create_new")}
         />
       )}
       {modalType === "edit-task" && <SubTaskForm key="edit" />}

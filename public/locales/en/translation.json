@@ -1,0 +1,43 @@
+{
+  "boards": {
+    "all_boards": "All boards ({{count}})",
+    "create_new": "+ Create New Board",
+    "add_new": "Add New Board",
+    "edit_board": "Edit Board",
+    "delete_board": "Delete Board",
+    "new_column": "+ Add New Column",
+    "board_name": "Board Name",
+    "board_columns": "Board Columns",
+    "placeholder_name": "e.g. Web Design",
+    "placeholder_column": "e.g. Todo"
+  },
+  "tasks": {
+    "create_new": "+ Create New Task",
+    "add_new": "Add New Task",
+    "task_name": "Task Name",
+    "description": "Description",
+    "subtasks": "Subtasks",
+    "column": "Column",
+    "select_column": "Select column",
+    "placeholder_task": "e.g. Take coffee break",
+    "placeholder_desc": "e.g. It's always good to take a break...",
+    "placeholder_subtask": "e.g. Make coffee"
+  },
+  "ui": {
+    "hide_sidebar": "Hide Sidebar",
+    "welcome_title": "Your space for productivity and organized workflow.",
+    "welcome_subtitle": "Select a board from the sidebar or create a new one to start tracking your tasks.",
+    "delete_title": "Delete this {{name}}?",
+    "delete_description": "Are you sure you want to delete the '{{name}}'. This action cannot be undone.",
+    "slogan": {
+      "focus": "Focus.",
+      "plan": "Plan.",
+      "achieve": "Achieve."
+    },
+    "buttons": {
+      "save_changes": "Save Changes",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    }
+  }
+}

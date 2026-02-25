@@ -1,17 +1,12 @@
-@reference "tailwindcss";
-
 @utility txt-xs {
-  @apply text-sm font-medium;
+  @apply text-[12px] leading-tight font-medium md:text-sm;
 }
-
 @utility txt-md {
-  @apply text-lg font-medium;
+  @apply text-base font-medium md:text-lg;
 }
-
 @utility txt-lg {
-  @apply text-xl font-semibold;
+  @apply text-lg font-semibold md:text-xl;
 }
-
 @utility txt-xl {
-  @apply text-2xl font-bold;
+  @apply text-xl font-bold leading-tight lg:text-2xl;
 }

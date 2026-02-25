@@ -1,12 +1,13 @@
+import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useModalParams } from "@/hooks/useModalParams";
 
+import { useModalParams } from "@/hooks/useModalParams";
 import { addBoard, selectBoard, updateBoard } from "@/store/board/selectors";
 import { useBoardStore } from "@/store/board/store";
+import type { Board } from "@/store/board/types";
 
 import { Form } from "../Form/Form";
-import type { Board } from "@/store/board/types";
 import { TextField } from "../Form/TextField";
 import { MultiTextField } from "../Form/MultiTextField";
 
@@ -31,6 +32,8 @@ const initialBoardState = {
 };
 
 export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { boardId } = useParams();
   const { modalType } = useModalParams();
@@ -64,19 +67,21 @@ export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
       title={title}
       submitButtonText={submitButtonText}
     >
-      <TextField
-        label="Name"
-        name="boardName"
-        placeholder="e.g. Marketing Plan"
-      />
-      <MultiTextField
-        id="column"
-        label="Column"
-        name="columns"
-        placeholder="e.g. Todo"
-        buttonText="+ Add New Column"
-        isRequired={true}
-      />
+      <div className="flex flex-col gap-6">
+        <TextField
+          label={t("boards.board_name")}
+          name="boardName"
+          placeholder={t("boards.placeholder_name")}
+        />
+        <MultiTextField
+          id="column"
+          label={t("boards.board_columns")}
+          name="columns"
+          placeholder={t("boards.placeholder_column")}
+          buttonText={t("boards.new_column")}
+          isRequired={true}
+        />
+      </div>
     </Form>
   );
 };

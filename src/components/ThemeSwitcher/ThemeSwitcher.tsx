@@ -6,22 +6,31 @@ import { selectTheme, selectToggleTheme } from "@/store/theme/selectors";
 
 export const ThemeSwitcher = () => {
   const theme = useThemeStore(selectTheme);
-  const toogleTheme = useThemeStore(selectToggleTheme);
-
-  const thumbClass = `w-3.5 h-3.5 bg-text-on-accent rounded-full transition-custom ${
-    theme === "dark" ? "translate-x-1" : "translate-x-10"
-  }`;
+  const toggleTheme = useThemeStore(selectToggleTheme);
 
   return (
-    <div className="btn-base gap-lg">
-      <DarkTheme />
+    <div
+      className="btn-base h-12 gap-6 bg-accent-lines"
+      role="group"
+      aria-label="Theme switcher"
+    >
+      <LightTheme className="size-6 text-text-secondary" aria-hidden="true" />
+
       <button
-        className="relative flex items-center bg-accent-dark rounded-full w-15 h-6 hover:brightness-110"
-        onClick={toogleTheme}
+        className="relative flex h-5 w-10 items-center rounded-full bg-accent-dark px-1 transition-all hover:brightness-110 outline-none"
+        onClick={toggleTheme}
+        role="switch"
+        aria-checked={theme === "dark"}
+        aria-label="Toggle dark mode"
       >
-        <span className={thumbClass}></span>
+        <span
+          className={`h-3.5 w-3.5 rounded-full bg-white transition-transform duration-200 ${
+            theme === "dark" ? "translate-x-4.5" : "translate-x-0"
+          }`}
+        />
       </button>
-      <LightTheme />
+
+      <DarkTheme className="size-6 text-text-secondary" aria-hidden="true" />
     </div>
   );
 };

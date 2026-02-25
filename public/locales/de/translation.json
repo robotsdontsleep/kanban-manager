@@ -1,0 +1,43 @@
+{
+  "boards": {
+    "all_boards": "Alle Boards ({{count}})",
+    "create_new": "+ Neues Board erstellen",
+    "add_new": "Neues Board hinzufügen",
+    "edit_board": "Board bearbeiten",
+    "delete_board": "Board löschen",
+    "new_column": "+ Neue Spalte hinzufügen",
+    "board_name": "Board-Name",
+    "board_columns": "Board-Spalten",
+    "placeholder_name": "z.B. Webdesign",
+    "placeholder_column": "z.B. Erledigen"
+  },
+  "tasks": {
+    "create_new": "+ Neue Aufgabe erstellen",
+    "add_new": "Neue Aufgabe hinzufügen",
+    "task_name": "Aufgabenname",
+    "description": "Beschreibung",
+    "subtasks": "Unteraufgaben",
+    "column": "Spalte",
+    "select_column": "Spalte auswählen",
+    "placeholder_task": "z.B. Kaffeepause machen",
+    "placeholder_desc": "z.B. Es ist immer gut, eine Pause zu machen...",
+    "placeholder_subtask": "z.B. Kaffee kochen"
+  },
+  "ui": {
+    "hide_sidebar": "Seitenleiste ausblenden",
+    "welcome_title": "Ihr Raum für Produktivität und organisierte Arbeitsabläufe.",
+    "welcome_subtitle": "Wählen Sie ein Board aus der Seitenleiste aus oder erstellen Sie ein neues, um mit der Verfolgung Ihrer Aufgaben zu beginnen.",
+    "delete_title": "{{name}} löschen?",
+    "delete_description": "Sind Sie sicher, dass Sie die {{name}} löschen möchten? Dieser Vorgang kann nicht rückgängig gemacht werden.",
+    "slogan": {
+      "focus": "Fokus.",
+      "plan": "Plan.",
+      "achieve": "Achieve."
+    },
+    "buttons": {
+      "save_changes": "Änderungen speichern",
+      "cancel": "Abbrechen",
+      "delete": "Löschen"
+    }
+  }
+}

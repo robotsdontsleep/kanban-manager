@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -19,8 +21,9 @@ interface TaskFormProps {
 }
 
 export const TaskForm = ({ title, submitButtonText }: TaskFormProps) => {
-  const navigate = useNavigate();
+  const { t } = useTranslation();
 
+  const navigate = useNavigate();
   const { boardId } = useParams();
   const activeBoard = useBoardStore(selectBoard(boardId!));
 
@@ -50,35 +53,39 @@ export const TaskForm = ({ title, submitButtonText }: TaskFormProps) => {
   };
 
   return (
-    <Form
-      defaultValues={defaultValues}
-      onSubmit={submit}
-      title={title}
-      submitButtonText={submitButtonText}
-    >
-      <TextField
-        label="Name"
-        name="taskName"
-        placeholder="e.g. Take coffee break"
-      />
-      <TextAreaField
-        label="Description"
-        name="taskDescription"
-        placeholder="e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little."
-      />
-      <MultiTextField
-        id="subtask"
-        label="Sub Tasks"
-        name="subtasks"
-        placeholder="e.g. Make coffee"
-        buttonText="+ Add New Subtask"
-      />
-      <SelectField
-        label="Column"
-        name="column"
-        placeholder="select column"
-        options={activeBoard?.columns || []}
-      />
-    </Form>
+    <div className="flex w-full flex-col">
+      <Form
+        defaultValues={defaultValues}
+        onSubmit={submit}
+        title={title}
+        submitButtonText={submitButtonText}
+      >
+        <div className="flex flex-col gap-6">
+          <TextField
+            label={t("tasks.task_name")}
+            name="taskName"
+            placeholder={t("tasks.placeholder_task")}
+          />
+          <TextAreaField
+            label={t("tasks.description")}
+            name="taskDescription"
+            placeholder={t("tasks.placeholder_desc")}
+          />
+          <MultiTextField
+            id="subtask"
+            label={t("tasks.subtasks")}
+            name="subtasks"
+            placeholder={t("tasks.placeholder_subtask")}
+            buttonText={t("ui.buttons.save_changes")}
+          />
+          <SelectField
+            label={t("tasks.column")}
+            name="column"
+            placeholder={t("tasks.select_column")}
+            options={activeBoard?.columns || []}
+          />
+        </div>
+      </Form>
+    </div>
   );
 };

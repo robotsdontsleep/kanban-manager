@@ -29,8 +29,8 @@ export const SelectField = ({
       name={name}
       rules={{ required: "Can't be empty" }}
       render={({ field, fieldState: { error } }) => (
-        <div className="flex-column gap-sm w-full">
-          <label className="caption">{label}</label>
+        <div className="relative flex w-full flex-col gap-2">
+          <label className="note font-bold">{label}</label>
 
           <Select.Root
             value={field.value?.id}
@@ -40,34 +40,32 @@ export const SelectField = ({
             }}
           >
             <Select.Trigger
-              className={`
-                transition-custom box-border h-10 w-full bg-transparent border-2 rounded-lg flex-between px-md data-[state=open]:border-accent outline-none
-              ${field.value ? "text-text-primary" : "text-text-secondary/50"}
-              ${error ? "border-danger-light hover:border-danger-light" : "border-lines hover:border-accent-light"}`}
+              aria-invalid={error ? "true" : "false"}
+              className={`formField text-sm flex items-center justify-between px-4 data-[state=open]:border-accent ${
+                field.value ? "text-text-primary" : "text-text-secondary/50"
+              } ${
+                error
+                  ? "border-danger-light focus:border-danger-light"
+                  : "border-lines hover:border-accent-light"
+              }`}
             >
               <Select.Value placeholder={placeholder} />
 
               <Select.Icon>
-                <ArrowIcon className="icon w-4 h-4" />
+                <ArrowIcon className="size-4 shrink-0" aria-hidden="true" />
               </Select.Icon>
             </Select.Trigger>
 
             <Select.Content
-              position="popper"
               sideOffset={8}
-              className="w-(--radix-select-trigger-width) bg-bg-page border-2 border-accent rounded-lg shadow-2xl animate-dropdown-in z-10"
+              className="z-500 w-(--radix-select-trigger-width) animate-dropdown-in overflow-hidden rounded-lg border border-lines bg-bg-page shadow-2xl"
             >
-              <Select.Viewport className="p-sm flex-column w-full gap-sm">
+              <Select.Viewport className="flex flex-col gap-1 p-2">
                 {options.map((option) => (
                   <Select.Item
                     key={option.id}
                     value={option.id}
-                    className="
-                        w-full h-[38px] flex items-center txt-sm p-sm rounded-md transition-custom cursor-pointer outline-none
-                        text-text-secondary border-transparent
-                        data-highlighted:bg-accent-light data-highlighted:text-text-primary data-highlighted:border-accent
-                        data-[state=checked]:bg-accent-dark data-[state=checked]:text-text-on-accent data-[state=checked]:border-accent-dark
-                      "
+                    className="note flex h-9 w-full cursor-pointer items-center rounded-md px-3 outline-none transition-colors text-text-secondary data-highlighted:bg-accent-light data-highlighted:text-accent-dark data-[state=checked]:bg-accent-dark data-[state=checked]:text-text-on-accent"
                   >
                     <Select.ItemText>{option.name}</Select.ItemText>
                   </Select.Item>

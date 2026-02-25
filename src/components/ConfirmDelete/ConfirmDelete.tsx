@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteBoard, selectBoard } from "@/store/board/selectors";
 import { useBoardStore } from "@/store/board/store";
@@ -9,48 +10,45 @@ interface Props {
 }
 
 export const ConfirmDelete = ({ onClose }: Props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { boardId, taskId } = useParams();
 
   const activeBoard = useBoardStore(selectBoard(boardId!));
-
   const activeTask = useTaskStore(selectTask(taskId!));
 
-  const type = taskId ? "task" : "board";
+  const name = taskId ? activeTask?.taskName : activeBoard?.boardName;
+
+  const handleDelete = () => {
+    if (taskId) {
+      deleteTask(taskId);
+      navigate(`/${boardId}`);
+    } else if (boardId) {
+      deleteBoard(boardId);
+      navigate("/");
+    }
+    onClose();
+  };
 
   return (
-    <div className="flex-column gap-lg">
-      <h2 className="text-danger-dark">Delete this {type}?</h2>
-      <p className="caption">
-        Are you sure you want to delete the{" "}
-        <span className="text-text-primary font-bold">
-          {taskId ? activeTask?.taskName : activeBoard?.boardName}
-        </span>{" "}
-        {type}? This action will remove all{" "}
-        {type === "board" ? "columns and tasks" : "subtasks"} and cannot be
-        reversed.
+    <div className="flex w-full flex-col gap-6">
+      <h2 className="title text-danger-dark">
+        {t("ui.delete_title", { name: name })}
+      </h2>
+
+      <p className="caption text-text-secondary">
+        {t("ui.delete_description", { name: name })}
       </p>
 
-      <div className="flex items-center justify-end gap-lg">
-        <button
-          className="btn-danger h-10 px-lg py-sm w-auto"
-          onClick={() => {
-            if (taskId) {
-              deleteTask(taskId);
-            } else if (boardId) {
-              deleteBoard(boardId);
-            }
-            onClose();
-            navigate(`/${boardId}`);
-          }}
-        >
-          Delete
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+        <button className="btn-danger h-10 sm:flex-1" onClick={handleDelete}>
+          {t("ui.buttons.delete")}
         </button>
         <button
-          className="btn-accent txt-xs h-10 px-lg py-sm w-auto"
-          onClick={() => navigate(`/${boardId}`)}
+          className="btn-base note h-10 bg-accent-light font-bold text-accent-dark hover:brightness-105 sm:flex-1"
+          onClick={onClose}
         >
-          Cancel
+          {t("ui.buttons.cancel")}
         </button>
       </div>
     </div>

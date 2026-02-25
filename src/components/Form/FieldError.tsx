@@ -3,11 +3,12 @@ interface FieldErrorProps {
 }
 
 export const FieldErrorComponent = ({ message }: FieldErrorProps) => {
-  return (
-    message && (
-      <span className="block relative left-1 text-xs text-danger-light animate-dropdown-in">
-        {message}
-      </span>
-    )
-  );
+  return message ? (
+    <span
+      role="alert"
+      className="note block text-danger-light animate-dropdown-in"
+    >
+      {message}
+    </span>
+  ) : null;
 };

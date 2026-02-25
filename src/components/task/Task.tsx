@@ -6,12 +6,15 @@ export const Task = ({ taskName, subtasks }: TaskType) => {
   );
 
   const subtaskText = subtasks.length
-    ? `${completedSubtasks.length} of ${subtasks.length}`
-    : "any subtasks";
+    ? `${completedSubtasks.length} of ${subtasks.length} subtasks`
+    : "No subtasks";
+
   return (
-    <div className="flex-column justify-center gap-md w-full min-h-[100px] h-auto p-lg rounded-lg bg-bg-page border-2 border-lines shadow-md transition-custom hover:border-accent">
-      <h3 className="wrap-break-word">{taskName}</h3>
-      <p className="caption wrap-break-word">{subtaskText}</p>
+    <div className="group flex min-h-[100px] w-full flex-col justify-center gap-2 rounded-lg bg-bg-page px-4 py-6 shadow-sm ring-1 ring-lines transition-all duration-200 hover:ring-2 hover:ring-accent-dark active:scale-[0.98]">
+      <h3 className="subtitle wrap-break-word font-bold text-text-primary group-hover:text-accent-dark">
+        {taskName}
+      </h3>
+      <p className="note font-bold">{subtaskText}</p>
     </div>
   );
 };

@@ -48,7 +48,7 @@ export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
     return initialBoardState;
   }, [activeBoard, modalType]);
 
-  const submit = (boardData: FormState | Board) => {
+  const submit = async (boardData: FormState | Board) => {
     const board =
       modalType === 'add-board'
         ? { ...boardData, boardId: `board-${Date.now()}` }
@@ -56,8 +56,7 @@ export const BoardForm = ({ title, submitButtonText }: BordFormProps) => {
 
     if (modalType === 'add-board') addBoard(board as Board);
     if (modalType === 'edit-board') updateBoard(board as Board);
-
-    void navigate(`/${board.boardId}`);
+    await navigate(`/${board.boardId}`);
   };
 
   return (

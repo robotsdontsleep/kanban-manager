@@ -1,10 +1,10 @@
-import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+import { Link, NavLink } from 'react-router-dom';
 
-import { MdDashboard as BoardIcon } from "react-icons/md";
+import { MdDashboard as BoardIcon } from 'react-icons/md';
 
-import { selectBoards } from "@/store/board/selectors";
-import { useBoardStore } from "@/store/board/store";
+import { selectBoards } from '@/store/board/selectors';
+import { useBoardStore } from '@/store/board/store';
 
 export const BoardList = () => {
   const { t } = useTranslation();
@@ -14,7 +14,7 @@ export const BoardList = () => {
   return (
     <nav className="flex h-full flex-col overflow-hidden">
       <h2 className="note flex-none pl-6 uppercase opacity-60 md:pl-8">
-        {t("boards.all_boards", { count: totalBoards })}
+        {t('boards.all_boards', { count: totalBoards })}
       </h2>
 
       <Link
@@ -23,7 +23,7 @@ export const BoardList = () => {
         aria-label="Create a new board"
       >
         <BoardIcon className="size-5 shrink-0" aria-hidden="true" />
-        <span className="font-bold">{t("boards.create_new")}</span>
+        <span className="font-bold">{t('boards.create_new')}</span>
       </Link>
 
       <ul className="custom-scrollbar flex min-h-0 flex-1 flex-col overflow-y-auto pr-4 md:pr-6">
@@ -34,8 +34,8 @@ export const BoardList = () => {
               className={({ isActive }) =>
                 `subtitle flex h-12 items-center gap-3 rounded-r-full pl-6 transition-all md:gap-4 md:pl-8 ${
                   isActive
-                    ? "bg-accent-dark text-text-on-accent"
-                    : "text-text-secondary hover:bg-accent-light hover:text-accent-dark"
+                    ? 'bg-accent-dark text-text-on-accent'
+                    : 'text-text-secondary hover:bg-accent-light hover:text-accent-dark'
                 }`
               }
               aria-label={`Go to board: ${board.boardName}`}

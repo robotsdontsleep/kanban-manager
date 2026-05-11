@@ -1,14 +1,14 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { AiOutlineMenu as MenuIcon } from "react-icons/ai";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AiOutlineMenu as MenuIcon } from 'react-icons/ai';
 
-import { useActiveBoard } from "@/hooks/useActiveBoard";
+import { useActiveBoard } from '@/hooks/useActiveBoard';
 
-import { BoardMenu } from "./BoardMenu";
-import { BoardError } from "./BoardError";
-import { TaskList } from "../task/TaskList";
+import { BoardMenu } from './BoardMenu';
+import { BoardError } from './BoardError';
+import { TaskList } from '../task/TaskList';
 
 export const Board = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ export const Board = () => {
               className="btn-accent hidden h-12 px-6 md:flex md:w-auto"
               aria-label="Add new task"
             >
-              {t("tasks.create_new")}
+              {t('tasks.create_new')}
             </Link>
 
             <Link
@@ -61,11 +61,7 @@ export const Board = () => {
 
           {isMenuOpen && (
             <>
-              <div
-                className="fixed inset-0 z-40"
-                onClick={closeMenu}
-                aria-hidden="true"
-              />
+              <div className="fixed inset-0 z-40" onClick={closeMenu} aria-hidden="true" />
               <BoardMenu onClose={closeMenu} />
             </>
           )}
@@ -82,7 +78,7 @@ export const Board = () => {
           className="subtitle mt-10 flex w-[280px] shrink-0 items-center justify-center rounded-lg bg-linear-to-b from-accent-light to-transparent text-center transition-all hover:text-accent-dark md:w-[300px]"
           aria-label="Add new column to board"
         >
-          {t("boards.new_column")}
+          {t('boards.new_column')}
         </Link>
       </div>
     </section>

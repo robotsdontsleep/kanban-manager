@@ -31,7 +31,7 @@ export const Form = <T extends FieldValues>({
     <FormProvider {...methods}>
       <form
         autoComplete="off"
-        onSubmit={void methods.handleSubmit(onSubmit)}
+        onSubmit={(e) => void methods.handleSubmit(onSubmit)(e)}
         className="flex flex-col gap-4"
       >
         <h2 className="title">{title}</h2>
